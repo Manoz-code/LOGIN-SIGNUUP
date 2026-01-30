@@ -2,6 +2,7 @@ import User from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken"
+import expressAsyncHandler from "express-async-handler";
 
 
 // REGISTER USER
@@ -36,3 +37,14 @@ export const loginUser = asyncHandler(async(req,res)=>{
 
     
 })
+
+// GET USER
+  export const getUser = asyncHandler(async(req,res)=>{
+ try {
+     const userData = req.user;
+  res.status(200).json({message : "Sucessfully fetch userdata",userData},);
+    
+ } catch (error) {
+    res.status(500).json({message : error.message});
+ }
+  })
